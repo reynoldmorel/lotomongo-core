@@ -18,6 +18,8 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <jreynoldlib.version>1.0</jreynoldlib.version>
+        <jackson.version>2.9.5</jackson.version>
+        <jackson.databind.version>2.9.5</jackson.databind.version>
     </properties>
 
     <dependencies>
@@ -25,6 +27,16 @@
             <groupId>com.electrosoft.jrl</groupId>
             <artifactId>jrl-app-struc</artifactId>
             <version>${jreynoldlib.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.databind.version}</version>
         </dependency>
     </dependencies>
     <profiles>
