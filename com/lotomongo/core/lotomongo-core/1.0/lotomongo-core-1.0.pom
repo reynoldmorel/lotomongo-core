@@ -12,7 +12,6 @@
     <modules>
         <module>lm-core-model</module>
         <module>lm-core</module>
-        <module>lm-ear</module>
     </modules>
     <profiles>
         <profile>
@@ -32,16 +31,6 @@
                 </repository>
             </distributionManagement>
         </profile>
-        <profile>
-            <id>Development</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-                <property>
-                    <name>env</name>
-                    <value>Development</value>
-                </property>
-            </activation>
-        </profile>
     </profiles>
     <build>
         <plugins>
@@ -57,16 +46,5 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>jreynoldlib-mvn-repo</id>
-            <url>https://raw.github.com/reynoldmorel/jreynoldlib/master/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
-
 
 </project>
