@@ -20,6 +20,7 @@
         <jreynoldlib.version>1.0</jreynoldlib.version>
         <jackson.version>2.9.5</jackson.version>
         <jackson.databind.version>2.9.5</jackson.databind.version>
+        <junit.version>4.4</junit.version>
     </properties>
 
     <dependencies>
@@ -49,6 +50,28 @@
                     <value>Release</value>
                 </property>
             </activation>
+            <properties>
+                <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
+                <db.url>jdbc:mysql://localhost:3306/lotomongo_local_trunk?createDatabaseIfNotExist=true&amp;useTimezone=false&amp;serverTimezone=UTC</db.url>
+                <db.username>root</db.username>
+                <db.password>1234</db.password>
+            </properties>
+        </profile>
+        <profile>
+            <id>Demo</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>env</name>
+                    <value>Demo</value>
+                </property>
+            </activation>
+            <properties>
+                <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
+                <db.url>jdbc:mysql://localhost:3306/lotomongo_local_trunk_demo?createDatabaseIfNotExist=true&amp;useTimezone=false&amp;serverTimezone=UTC</db.url>
+                <db.username>root</db.username>
+                <db.password>1234</db.password>
+            </properties>
         </profile>
         <profile>
             <id>Development</id>
@@ -59,6 +82,12 @@
                     <value>Development</value>
                 </property>
             </activation>
+            <properties>
+                <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
+                <db.url>jdbc:mysql://localhost:3306/lotomongo_local_trunk_dev?createDatabaseIfNotExist=true&amp;useTimezone=false&amp;serverTimezone=UTC</db.url>
+                <db.username>root</db.username>
+                <db.password>1234</db.password>
+            </properties>
         </profile>
         <profile>
             <id>Testing</id>
@@ -69,44 +98,106 @@
                     <value>Testing</value>
                 </property>
             </activation>
+            <properties>
+                <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
+                <db.url>jdbc:mysql://localhost:3306/lotomongo_local_trunk_test?createDatabaseIfNotExist=true&amp;useTimezone=false&amp;serverTimezone=UTC</db.url>
+                <db.username>root</db.username>
+                <db.password>1234</db.password>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <version>${junit.version}</version>
+                </dependency>
+            </dependencies>
             <build>
+                <finalName>maven-unit-test</finalName>
                 <plugins>
                     <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.21.0</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.ow2.asm</groupId>
-                                <artifactId>asm</artifactId>
-                                <version>6.2</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.7.0</version>
-                        <configuration>
-                            <release>${java.version}</release>
-                        </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.ow2.asm</groupId>
-                                <artifactId>asm</artifactId>
-                                <version>6.2</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>versions-maven-plugin</artifactId>
-                        <version>2.5</version>
-                        <configuration>
-                            <generateBackupPoms>false</generateBackupPoms>
-                        </configuration>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M3</version>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <includes>
+                                        <include>**/TestMain.class</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <version>2.17</version>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+        <profile>
+            <id>Integration</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>env</name>
+                    <value>Integration</value>
+                </property>
+            </activation>
+            <properties>
+                <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
+                <db.url>jdbc:mysql://localhost:3306/lotomongo_local_trunk_integration?createDatabaseIfNotExist=true&amp;useTimezone=false&amp;serverTimezone=UTC</db.url>
+                <db.username>root</db.username>
+                <db.password>1234</db.password>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <version>${junit.version}</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <finalName>maven-integration-test</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M3</version>
+                        <executions>
+                            <execution>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <configuration>
+                                    <includes>
+                                        <include>**/IntegrationTestMain.class</include>
+                                    </includes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <version>2.17</version>
+                    </plugin>
+                </plugins>
+            </reporting>
         </profile>
     </profiles>
 
@@ -130,6 +221,11 @@
                         internal.repo::default::file://${project.parent.build.directory}/mvn-repo
                     </altDeploymentRepository>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
             </plugin>
         </plugins>
     </build>
