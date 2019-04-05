@@ -89,13 +89,6 @@
                 <db.username>root</db.username>
                 <db.password>1234</db.password>
             </properties>
-            <distributionManagement>
-                <repository>
-                    <id>internal.repo</id>
-                    <name>Temporary Staging Repository</name>
-                    <url>file://${project.build.directory}/mvn-repo</url>
-                </repository>
-            </distributionManagement>
         </profile>
         <profile>
             <id>Development</id>
