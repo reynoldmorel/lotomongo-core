@@ -85,7 +85,7 @@
             </activation>
             <properties>
                 <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
-                <db.url>jdbc:mysql://localhost:3306/lotomongo_local?createDatabaseIfNotExist=true</db.url>
+                <db.url>jdbc:mysql://localhost:3306/lotomongo_local_trunk?createDatabaseIfNotExist=&amp;useTimezone=false&amp;serverTimezone=UTC</db.url>
                 <db.username>root</db.username>
                 <db.password>1234</db.password>
             </properties>
@@ -108,7 +108,7 @@
             </activation>
             <properties>
                 <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
-                <db.url>jdbc:mysql://localhost:3306/lotomongo_local?createDatabaseIfNotExist=true</db.url>
+                <db.url>jdbc:mysql://localhost:3306/lotomongo_local_trunk?createDatabaseIfNotExist=&amp;useTimezone=false&amp;serverTimezone=UTC</db.url>
                 <db.username>root</db.username>
                 <db.password>1234</db.password>
             </properties>
@@ -124,7 +124,7 @@
             </activation>
             <properties>
                 <db.driverClassName>com.mysql.jdbc.Driver</db.driverClassName>
-                <db.url>jdbc:mysql://localhost:3306/lotomongo_local?createDatabaseIfNotExist=true</db.url>
+                <db.url>jdbc:mysql://localhost:3306/lotomongo_local_trunk?createDatabaseIfNotExist=&amp;useTimezone=false&amp;serverTimezone=UTC</db.url>
                 <db.username>root</db.username>
                 <db.password>1234</db.password>
             </properties>
